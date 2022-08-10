@@ -54,3 +54,19 @@ class ProductItem {
 let list = new ProductsList();
 list.render();
 list.getSum();
+
+
+class Basket {
+
+  addToBasket() {}
+
+  deliteFromBasket() {}
+
+  changeBasket() {}
+
+  render() {}
+}
+
+class BasketItem {
+  render() {}
+}
