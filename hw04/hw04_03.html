@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    input {
+      margin-bottom: 15px;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    input:invalid {
+      border-color: rgb(215, 18, 18);
+      background-color: #eadede;
+    }
+
+    input:valid {
+      border-color: #1c721c;
+    }
+  
+    .error-name 
+    .error-phone
+    .error-mail {
+      width  : 100%;
+      padding: 0;
+      font-size: 80%;
+      color: rgb(238, 18, 18);
+      box-sizing: border-box;
+    }
+
+    .active {
+      color: rgb(215, 18, 18);
+    }
+  </style>
+</head>
+
+<!-- 
+  Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить.
+При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
+a. Имя содержит только буквы.
+b. Телефон имеет вид +7(000)000-0000.
+c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
+d. Текст произвольный.
+e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой
+и сообщить пользователю об ошибке. 
+-->
+
+<body>
+
+<form action="#">
+  <label for="name">
+    <span>Enter your name</span><br>
+    <span class="error-name" aria-live="polite"></span> <br>
+    <input type="text" id="name" name="name" value=""> <br>
+  </label>
+
+  <label for="phone">
+    <span>Enter your phone</span><br>
+    <span class="error-phone" aria-live="polite"></span><br>
+    <input type="tel" id="phone" name="phone" value=""> <br>
+  </label>
+
+  <label for="mail">
+    <span>Enter your email</span><br>
+    <span class="error-mail" aria-live="polite"></span><br>     
+    <input type="email" id="mail" name="mail" value=""> <br>
+  </label>
+
+  <textarea name="comment" id="comment" style="height: 46px; width: 164px;"></textarea> <br>
+  <button>Submit</button><br>
+  <span class="error error-button" aria-live="polite"></span>
+</form>
+  <script>
+    'use strict';
+    
+    const name = document.querySelector('#name');
+    const phone = document.querySelector('#phone');
+    const mail = document.querySelector('#mail');
+    const errorName = document.querySelector('form .error-name');
+    const errorPhone = document.querySelector('form .error-phone');
+    const errorMail = document.querySelector('form .error-mail');
+    
+    name.addEventListener('input', (event) => {
+      if (name.value === '' ||  !name.value === isText(name.value)) {
+        errorName.classList.add('active');
+        errorName.textContent = "You need to enter your name!";
+      } else {
+        errorName.textContent = '';
+        errorName.classList.remove('active');
+      }
+    });
+
+    phone.addEventListener('input', (event) => {
+      if (phone.value === '' || !phone.value === isNum(phone.value)) {
+        errorPhone.classList.add('active');
+        errorPhone.textContent = "You need to enter your phone number in format +7(000)000-0000!";
+      } else {
+        errorPhone.textContent = '';
+        errorPhone.classList.remove('active');
+      }
+    });
+
+    mail.addEventListener('input', (event) => {
+      if (mail.value === '' ||  !mail.value === isMail(mail.value)) {
+        errorMail.classList.add('active');
+        errorMail.textContent = "You need to enter your email!";
+      } else {
+        errorMail.textContent = '';
+        errorMail.classList.remove('active');
+      }
+    });
+
+    function isText(str) {
+      return (/^[a-zA-Zа-яА-ЯёЁ]+$/g).test(str);
+    }
+
+    function isNum(num) {
+      return (/^\+?[7]\(?\d{3}\)?-?\d{3}-?\d{4}$/g).test(num);
+    }
+
+    function isMail(mail) {
+      return (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]{2,4}$/iu).test(mail);
+    }
+
+  </script>
+</body>
+</html>
