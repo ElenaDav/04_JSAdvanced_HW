@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: Quicksand;
+}
+
+header {
+  background: gray;
+  height: 74px;
+  padding: 18px 16px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 25px;
+  color: aliceblue;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.goods-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.goods-item {
+  padding: 5px;
+  border: 1px solid skyblue;
+}
+
+.goods-item img {
+  width: 100%;
+}
+
+.cart-button {
+  background: #e5948f;
+  font-size: 15px;
+  padding: 7px 14px;
+  color: white;
+  font-family: system-ui;
+}
